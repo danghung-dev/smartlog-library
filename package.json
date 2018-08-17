@@ -1,0 +1,36 @@
+{
+  "name": "smartlog-library",
+  "version": "1.0.0",
+  "description": "smartlog library",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danghung-dev/smartlog-library.git"
+  },
+  "keywords": [
+    "kafka",
+    "node",
+    "messaging"
+  ],
+  "author": "Dang Viet Hung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danghung-dev/smartlog-library/issues"
+  },
+  "homepage": "https://github.com/danghung-dev/smartlog-library#readme",
+  "dependencies": {
+    "kafka-node": "^2.6.1",
+    "winston": "^3.0.0-rc5",
+    "jsonwebtoken": "^8.2.1",
+    "joi": "^13.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0"
+  }
+}
