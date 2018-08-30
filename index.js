@@ -9,7 +9,7 @@ const Errors = require('./src/response-format/error');
 const formatters = require('./src/response-format/formatter');
 
 const errorHandlerMiddleware = require('./src/response-format/middleware/errorHandler');
-const logger = require('./src/logger');
+const logger = require('./src/logger/index.js');
 let log = require('./src/response-format/logger');
 
 const errorHandler = (logOptions) => {

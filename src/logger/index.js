@@ -2,13 +2,13 @@ const config = require('./config')
 
 class Logger {
   constructor() {
-    if (config.env === 'production' && config.log_server && config.log_server_port && config.logName) {
+    if (config.env === 'production' && config.logServer && config.logServerPort && config.logName) {
       this.fluent = require('fluent-logger')
       this.fluent.configure(config.logName, {
-        host: config.log_server,
-        port: config.log_server_port,
+        host: config.logServer,
+        port: config.logServerPort,
         timeout: 3.0,
-        reconnectInterval: 600000, // 10 minutes
+        reconnectInterval: 100000, // 100 seconds
       })
     }
   }
@@ -16,11 +16,11 @@ class Logger {
     if (this.fluent) {
       let sendMess
       if (!(message instanceof Object)) {
-        sendMess = { message }
+        sendMess = { logType: type, message }
       } else {
-        sendMess = message
+        sendMess = { ...message, logType: type }
       }
-      this.fluent.emit(type, sendMess)
+      this.fluent.emit(sendMess)
     }
   }
   log(data) {
