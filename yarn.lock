@@ -569,6 +569,10 @@ esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
 
+event-lite@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/event-lite/-/event-lite-0.1.1.tgz#47cf08a8d37d0b694cdb7b3b17b51faac6576086"
+
 external-editor@^2.0.4:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/external-editor/-/external-editor-2.2.0.tgz#045511cfd8d133f3846673d1047c154e214ad3d5"
@@ -631,6 +635,12 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+fluent-logger@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fluent-logger/-/fluent-logger-3.0.0.tgz#ea3a6ed326c7e63c95725e1200674fdeaf268731"
+  dependencies:
+    msgpack-lite "*"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -704,6 +714,10 @@ iconv-lite@^0.4.17:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+ieee754@^1.1.8:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.12.tgz#50bf24e5b9c8bb98af4964c941cdb0918da7b60b"
+
 ignore@^3.3.3:
   version "3.3.10"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.10.tgz#0a97fb876986e8081c631160f8f9f389157f0043"
@@ -741,6 +755,10 @@ inquirer@^3.0.6:
     string-width "^2.1.0"
     strip-ansi "^4.0.0"
     through "^2.3.6"
+
+int64-buffer@^0.1.9:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/int64-buffer/-/int64-buffer-0.1.10.tgz#277b228a87d95ad777d07c13832022406a473423"
 
 invariant@^2.2.0:
   version "2.2.4"
@@ -1007,6 +1025,15 @@ ms@2.0.0:
 ms@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
+
+msgpack-lite@*:
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/msgpack-lite/-/msgpack-lite-0.1.26.tgz#dd3c50b26f059f25e7edee3644418358e2a9ad89"
+  dependencies:
+    event-lite "^0.1.1"
+    ieee754 "^1.1.8"
+    int64-buffer "^0.1.9"
+    isarray "^1.0.0"
 
 mute-stream@0.0.7:
   version "0.0.7"

@@ -1,6 +1,6 @@
 {
   "name": "smartlog-library",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "smartlog library",
   "main": "index.js",
   "scripts": {
@@ -22,10 +22,11 @@
   },
   "homepage": "https://github.com/danghung-dev/smartlog-library#readme",
   "dependencies": {
-    "kafka-node": "^2.6.1",
-    "winston": "^3.0.0-rc5",
+    "fluent-logger": "^3.0.0",
+    "joi": "^13.3.0",
     "jsonwebtoken": "^8.2.1",
-    "joi": "^13.3.0"
+    "kafka-node": "^2.6.1",
+    "winston": "^3.0.0-rc5"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

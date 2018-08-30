@@ -9,6 +9,7 @@ const Errors = require('./src/response-format/error');
 const formatters = require('./src/response-format/formatter');
 
 const errorHandlerMiddleware = require('./src/response-format/middleware/errorHandler');
+const logger = require('./src/logger');
 let log = require('./src/response-format/logger');
 
 const errorHandler = (logOptions) => {
@@ -23,6 +24,7 @@ module.exports = {
   permitAction,
   permitRole,
   log,
+  logger,
   validate,
   errorHandler,
   ...formatters,
