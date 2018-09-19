@@ -15,13 +15,23 @@ class Logger {
   sendLog(message, type) {
     if (this.fluent) {
       let sendMess;
-      if (!(message instanceof Object)) {
-        sendMess = { logType: type, message };
-      } else {
-        const parseMessage = JSON.parse(JSON.stringify(message));
-        sendMess = { ...parseMessage, logType: type };
+      try {
+        if (!(message instanceof Object)) {
+          sendMess = { logType: type, message };
+        } else {
+          const parseMessage = JSON.parse(JSON.stringify(message));
+          sendMess = { ...parseMessage, logType: type };
+        }
+        this.fluent.emit(sendMess);
+      } catch (error) {
+        if (message && message.message) {
+          sendMess = { message: message.message, logType: type };
+          this.fluent.emit(sendMess);
+        } else {
+          sendMess = { message: 'Cannot send log', logType: type };
+          this.fluent.emit(sendMess);
+        }
       }
-      this.fluent.emit(sendMess);
     }
   }
   log(data) {
