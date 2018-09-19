@@ -1,44 +1,45 @@
-const config = require('./config')
+const config = require('./config');
 
 class Logger {
   constructor() {
     if (config.env === 'production' && config.logServer && config.logServerPort && config.logName) {
-      this.fluent = require('fluent-logger')
+      this.fluent = require('fluent-logger');
       this.fluent.configure(config.logName, {
         host: config.logServer,
         port: config.logServerPort,
         timeout: 3.0,
         reconnectInterval: 100000, // 100 seconds
-      })
+      });
     }
   }
   sendLog(message, type) {
     if (this.fluent) {
-      let sendMess
+      let sendMess;
       if (!(message instanceof Object)) {
-        sendMess = { logType: type, message }
+        sendMess = { logType: type, message };
       } else {
-        sendMess = { ...message, logType: type }
+        const parseMessage = JSON.parse(JSON.stringify(message));
+        sendMess = { ...parseMessage, logType: type };
       }
-      this.fluent.emit(sendMess)
+      this.fluent.emit(sendMess);
     }
   }
   log(data) {
-    this.sendLog(data, 'log')
+    this.sendLog(data, 'log');
   }
   warn(data) {
-    this.sendLog(data, 'warn')
+    this.sendLog(data, 'warn');
   }
   info(data) {
-    this.sendLog(data, 'info')
+    this.sendLog(data, 'info');
   }
   error(data) {
-    this.sendLog(data, 'error')
+    this.sendLog(data, 'error');
   }
   debug(data) {
-    this.sendLog(data, 'debug')
+    this.sendLog(data, 'debug');
   }
 }
 
-const instance = new Logger()
-module.exports = instance
+const instance = new Logger();
+module.exports = instance;
