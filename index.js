@@ -14,7 +14,7 @@ let log = require('./src/response-format/logger');
 
 const errorHandler = (logOptions) => {
   log = log(logOptions);
-  return errorHandlerMiddleware(log);
+  return errorHandlerMiddleware(logger);
 };
 module.exports = {
   consumer: new SimpleConsumer(),
