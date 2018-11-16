@@ -13,6 +13,7 @@ class Logger {
     }
   }
   sendLog(message, type) {
+    console.log(JSON.stringify(message));
     if (this.fluent) {
       let sendMess;
       try {
