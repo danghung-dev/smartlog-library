@@ -1,7 +1,7 @@
 const SimpleConsumer = require('./src/consumer');
 const producer = require('./src/producer');
 const { genericHandler } = require('./src/generic-handler');
-const { permitRole, permitAction } = require('./src/auth');
+const { permitRole, permitAction, permitRoleAction } = require('./src/auth');
 
 const validate = require('./src/response-format/middleware/validate');
 
@@ -23,6 +23,7 @@ module.exports = {
   genericHandler,
   permitAction,
   permitRole,
+  permitRoleAction,
   log,
   logger,
   validate,
