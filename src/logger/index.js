@@ -1,5 +1,16 @@
 const config = require('./config');
 
+const winston = require('winston');
+const { Loggly } = require('winston-loggly-bulk');
+
+if (process.env.LOGGY_TOKEN) {
+  winston.add(new Loggly({
+    token: process.env.LOGGY_TOKEN,
+    subdomain: 'muaiphone',
+    tags: [config.logName],
+    json: true,
+  }));
+}
 class Logger {
   constructor() {
     if (config.env === 'production' && config.logServer && config.logServerPort && config.logName) {
@@ -13,7 +24,12 @@ class Logger {
     }
   }
   sendLog(message, type) {
-    console.log(JSON.stringify(message));
+    const logData = JSON.stringify(message);
+    console.log(logData);
+    if (process.env.LOGGY_TOKEN && logData.length < 10 * 1024) {
+      const loggy = Object.assign({ logName: config.logName }, message);
+      winston.log(type, loggy);
+    }
     if (this.fluent) {
       let sendMess;
       try {

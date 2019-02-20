@@ -1,3 +1,8 @@
+## Publish
+1. Change code
+2. Change version in package.json
+3. npm publish
+
 ### Usage
 ```bash
 export JWT_KEY=<secret_key>
