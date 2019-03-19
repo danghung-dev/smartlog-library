@@ -1,6 +1,7 @@
 const config = require('./config');
 
 const winston = require('winston');
+const { WebClient } = require('@slack/client');
 const { Loggly } = require('winston-loggly-bulk');
 
 if (process.env.LOGGY_TOKEN) {
@@ -11,6 +12,7 @@ if (process.env.LOGGY_TOKEN) {
     json: true,
   }));
 }
+
 class Logger {
   constructor() {
     if (config.env === 'production' && config.logServer && config.logServerPort && config.logName) {
@@ -22,13 +24,35 @@ class Logger {
         reconnectInterval: 100000, // 100 seconds
       });
     }
+    if (process.env.slackToken) {
+      this.slackClient = new WebClient(process.env.slackToken);
+    }
   }
-  sendLog(message, type) {
+  async sendSlack(message, type) {
+    if (this.slackClient) {
+      let text;
+      if (typeof message === 'object') {
+        const temp = Object.assign({ type, logName: config.logName }, message);
+        text = JSON.stringify(temp, null, 2);
+      } else {
+        text = message;
+      }
+      text = `\`\`\`${text}\`\`\``;
+      await this.slackClient.chat.postMessage({
+        channel: process.env.slackChannelId,
+        text,
+      });
+    }
+  }
+  async sendLog(message, type) {
     const logData = JSON.stringify(message);
     console.log(logData);
     if (process.env.LOGGY_TOKEN && logData.length < 10 * 1024) {
       const loggy = Object.assign({ logName: config.logName }, message);
       winston.log(type, loggy);
+    }
+    if (type === 'critical') {
+      await this.sendSlack(message, type);
     }
     if (this.fluent) {
       let sendMess;
@@ -60,8 +84,9 @@ class Logger {
   info(data) {
     this.sendLog(data, 'info');
   }
-  error(data) {
-    this.sendLog(data, 'error');
+  error(data, isCritical = false) {
+    if (isCritical) this.sendLog(data, 'critical');
+    else this.sendLog(data, 'error');
   }
   debug(data) {
     this.sendLog(data, 'debug');

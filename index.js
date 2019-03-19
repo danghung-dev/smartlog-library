@@ -1,4 +1,5 @@
 const SimpleConsumer = require('./src/consumer');
+const SQSService = require('./src/aws-sqs');
 const producer = require('./src/producer');
 const { genericHandler } = require('./src/generic-handler');
 const { permitRole, permitAction, permitRoleAction } = require('./src/auth');
@@ -17,6 +18,7 @@ const errorHandler = (logOptions) => {
   return errorHandlerMiddleware(logger);
 };
 module.exports = {
+  SQSService,
   consumer: new SimpleConsumer(),
   SimpleConsumer,
   producer,
