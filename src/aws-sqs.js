@@ -4,7 +4,7 @@ const queueUrl = process.env.sqsQueueUrl;
 
 class SqsService {
   constructor() {
-    if (process.env.awsAccessKeyId && process.env.awsSecretAccessKey && process.env.sqsQueueUrl) {
+    if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_KEY && process.env.sqsQueueUrl) {
       aws.config.update({
         region: 'ap-southeast-1',
         accessKeyId: process.env.awsAccessKeyId,

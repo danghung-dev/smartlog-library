@@ -1,6 +1,6 @@
 {
   "name": "smartlog-library",
-  "version": "1.1.22",
+  "version": "1.1.25",
   "description": "smartlog library",
   "main": "index.js",
   "scripts": {
