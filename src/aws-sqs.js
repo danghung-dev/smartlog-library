@@ -7,8 +7,8 @@ class SqsService {
     if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_KEY && process.env.sqsQueueUrl) {
       aws.config.update({
         region: 'ap-southeast-1',
-        accessKeyId: process.env.awsAccessKeyId,
-        secretAccessKey: process.env.awsSecretAccessKey,
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
       });
       const sqs = new aws.SQS({ apiVersion: '2012-11-05' });
       this.sqs = sqs;
