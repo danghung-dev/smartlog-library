@@ -39,6 +39,32 @@ class SqsService {
       });
     }
   }
+
+  sendMessageQueueName(message, delaySeconds = 0, queueName = queueUrl) {
+    if (this.sqs) {
+      return new Promise((resolve, reject) => {
+        try {
+          const params = {
+            DelaySeconds: delaySeconds,
+            MessageBody: JSON.stringify(message),
+            QueueUrl: queueName,
+          };
+          this.sqs.sendMessage(params, (err, data) => {
+            if (err) {
+              console.log('Error', err);
+              reject(err);
+            } else {
+              console.log('Success', data.MessageId);
+              resolve(data);
+            }
+          });
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+    return null;
+  }
 }
 
 module.exports = new SqsService();
